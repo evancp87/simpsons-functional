@@ -2,10 +2,12 @@
 import { useState } from "react";
 import Character from "./Character";
 import Controls from "./Controls";
+import { validate } from "../validation/index.js";
 
-const Simpsons = ({ data: simpsons, setData }) => {
+const Simpsons = ({ data: simpsons, setData, character, setCharacter }) => {
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
+  const [errors, setErrors] = useState(null);
 
   const handleDelete = (character) => {
     const indexOf = simpsons.findIndex((item) => item.character === character);
@@ -15,10 +17,14 @@ const Simpsons = ({ data: simpsons, setData }) => {
   };
 
   // functions for searching and filtering
-  const searchSimpsonsInput = (e) => {
-    console.log(e.target.value);
+  const searchSimpsonsInput = async (e) => {
+    const { value } = e.target;
+    setCharacter(value);
+    const payload = { character: value }; // Wrap the string value in an object
+    const res = await validate(payload);
 
-    setSearch(e.target.value);
+    setErrors(res);
+    // setSearch(e.target.value);
   };
 
   const sortSimpsons = (e) => {
@@ -63,6 +69,9 @@ const Simpsons = ({ data: simpsons, setData }) => {
         resetFilters={resetFilters}
         sortSimpsons={sortSimpsons}
         searchSimpsonsInput={searchSimpsonsInput}
+        character={character}
+        setCharacter={setCharacter}
+        errors={errors}
       />
       {filteredSimpsonsData.length === 0 && <p>No results found, dude</p>}
       {filteredSimpsonsData.map((item, index) => {
@@ -75,6 +84,8 @@ const Simpsons = ({ data: simpsons, setData }) => {
             simpsons={simpsons}
             sortSimpsons={sortSimpsons}
             searchSimpsonsInput={searchSimpsonsInput}
+            character={character}
+            setCharacter={setCharacter}
           />
         );
       })}
