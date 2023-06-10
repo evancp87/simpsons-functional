@@ -1,42 +1,81 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+*{
+  box-sizing: border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+body {
+  min-height: 100dvh;
+  min-height: 100svh;
+  background-color: #2f64d6;
+  display: flex;
+  flex-direction: column;
+
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.liked {
+  max-width: 250px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.notLiked {
+  width: 150px;
+}
+
+.characterContainer {
+  display: flex;
+  background-color: cadetblue;
+  transition: 1s max-width ease-in-out;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  margin-block: 1em;
+  padding: 1em;
+}
+
+.left-text {
+
+  order: 1;
+}
+
+
+.nav {
+  display: flex;
+justify-content: center;
+
+}
+
+.nav-list {
+  display: flex;
+  justify-content: space-evenly;
+  background: cadetblue;
+  border-radius: 10px;
+  max-width: 100%;
+  width: 100%;
+}
+
+li {
+list-style: none;
+margin: 0.2rem;
+}
+
+/* Splash screen animation */
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.splash-screen {
+  animation: pulse 1s infinite ease-in-out;
+}
+@keyframes pulse {
+
+  0% {
+opacity: 1
+  } 
+
+  50% {
+opacity: 0.1
+    
   }
-  to {
-    transform: rotate(360deg);
+
+  100% {
+opacity: 1
+    
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
