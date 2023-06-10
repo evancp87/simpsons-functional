@@ -5,6 +5,7 @@ import Name from "./Name";
 import Quote from "./Quote";
 import Image from "./Image";
 import Delete from "./Delete";
+import { useSelector, useDispatch } from "react-redux";
 
 const Character = ({ item, characterDirection, handleDelete }) => {
   const [liked, setLiked] = useState(false);
